@@ -8,7 +8,7 @@ const getProduct = async (id) => {
 };
 
 const showProduct = async (product) => {
-  const buttons = `<a href="/client/edit.html?id=${product.id}" class="btn btn-success">Edit</a>`;
+  const buttons = `<a href="/edit.html?id=${product.id}" class="btn btn-success">Edit</a>`;
   addProductToPage(product, 12, buttons, productSection);
 };
 

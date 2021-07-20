@@ -11,7 +11,7 @@ const getProducts = async () => {
 
 const showProducts = (products) => {
   products.forEach((product) => {
-    const buttons = `<a href="/client/product.html?id=${product.id}" class="btn btn-primary">View</a>`;
+    const buttons = `<a href="/product.html?id=${product.id}" class="btn btn-primary">View</a>`;
     addProductToPage(product, 4, buttons, productsSection);
   });
 };

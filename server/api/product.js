@@ -10,6 +10,7 @@ router.get("/", async (req, res) => {
   res.json(products);
 });
 
+// GET /api/products/:id
 router.get("/:id", async (req, res, next) => {
   if (isNaN(req.params.id)) {
     return next(new Error("Invalid Id"));
@@ -23,5 +24,37 @@ router.get("/:id", async (req, res, next) => {
 
   res.json(product);
 });
+
+// POST /api/products/
+router.post("/", async (req, res, next) => {
+  if (!validProduct(req.body)) {
+    return next(new Error("Invalid Product"));
+  }
+
+  const { title, description, price, quantity, image } = req.body;
+
+  const product = {
+    title,
+    description,
+    price,
+    quantity,
+    image,
+  };
+
+  const id = await queries.create(product);
+
+  res.json({ id });
+});
+
+const validProduct = (product) => {
+  return (
+    typeof product.title === "string" &&
+    product.title.trim() !== "" &&
+    !isNaN(product.price) &&
+    product.price > 0 &&
+    Number.isInteger(product.quantity) &&
+    product.quantity > 0
+  );
+};
 
 module.exports = router;
