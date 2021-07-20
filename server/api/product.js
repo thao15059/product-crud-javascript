@@ -10,4 +10,18 @@ router.get("/", async (req, res) => {
   res.json(products);
 });
 
+router.get("/:id", async (req, res, next) => {
+  if (isNaN(req.params.id)) {
+    return next(new Error("Invalid Id"));
+  }
+
+  const product = await queries.getOne(req.params.id);
+
+  if (!product) {
+    return next(new Error(`Not Found Product With Id ${req.params.id}`));
+  }
+
+  res.json(product);
+});
+
 module.exports = router;
