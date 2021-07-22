@@ -1,15 +1,31 @@
+const productEditForm = document.querySelector("#productEditForm");
 const errorMessage = document.querySelector("#errorMessage");
-const productForm = document.querySelector("#productForm");
+const productId = getIdFromQuery();
 
 errorMessage.style.display = "none";
 
-const createProduct = async (product) => {
-  const response = await fetch(`${API_URL}/products`, {
-    method: "POST",
+const populateFormWithProduct = (product) => {
+  document.querySelector("#title").value = product.title;
+  document.querySelector("#description").value = product.description;
+  document.querySelector("#image").value = product.image;
+  document.querySelector("#price").value = product.price;
+  document.querySelector("#quantity").value = product.quantity;
+};
+
+const updateProduct = async ({
+  productId,
+  title,
+  description,
+  price,
+  quantity,
+  image,
+}) => {
+  const response = await fetch(`${API_URL}/products/${productId}`, {
+    method: "PUT",
     headers: {
       "content-type": "application/json",
     },
-    body: JSON.stringify(product),
+    body: JSON.stringify({ title, description, price, quantity, image }),
   });
 
   const { id } = await response.json();
@@ -21,7 +37,7 @@ const handleFormSubmit = (e) => {
   e.preventDefault();
   errorMessage.style.display = "none";
 
-  const productFormData = new FormData(productForm);
+  const productFormData = new FormData(productEditForm);
   const title = productFormData.get("title");
   const description = productFormData.get("description");
   const image = productFormData.get("image");
@@ -46,7 +62,8 @@ const handleFormSubmit = (e) => {
     return;
   }
 
-  createProduct({
+  updateProduct({
+    productId,
     title,
     description,
     price,
@@ -55,4 +72,6 @@ const handleFormSubmit = (e) => {
   });
 };
 
-productForm.addEventListener("submit", handleFormSubmit);
+productEditForm.addEventListener("submit", handleFormSubmit);
+
+getProduct(productId).then(populateFormWithProduct);

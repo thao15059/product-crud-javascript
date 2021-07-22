@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <title>Ts Store</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="/">Ts Store</a>
+          <div class="navbar me-auto">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/create.html">Create</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <h1 class="my-3">New Product</h1>
+
+      <form id="productEditForm" method="POST">
+        <div class="alert alert-danger" role="alert" id="errorMessage"></div>
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            placeholder="Super product"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            name="description"
+            placeholder="The best product!!!"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Image URL</label>
+          <input
+            type="url"
+            class="form-control"
+            id="image"
+            name="image"
+            placeholder="yourimage.url"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input
+            type="number"
+            step="0.01"
+            class="form-control"
+            id="price"
+            name="price"
+            placeholder="9.99"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="quantity" class="form-label">Quantity</label>
+          <input
+            type="number"
+            class="form-control"
+            id="quantity"
+            name="quantity"
+            placeholder="3"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-info">Update</button>
+      </form>
+    </main>
+
+    <script src="js/shared.js"></script>
+    <script src="js/edit.js"></script>
+  </body>
+</html>

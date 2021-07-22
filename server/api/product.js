@@ -76,9 +76,9 @@ router.put("/:id", validIdMid, validProductMid, async (req, res) => {
 
   const product = getProductFromOdy(req.body);
 
-  const productUpdated = await queries.update(req.params.id, product);
+  await queries.update(req.params.id, product);
 
-  res.json({ message: "Updated" });
+  res.json({ id: req.params.id });
 });
 
 module.exports = router;

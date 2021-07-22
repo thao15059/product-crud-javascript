@@ -20,3 +20,8 @@ const addProductToPage = (product, size, buttons, parent) => {
       </div>
     `;
 };
+
+const getProduct = async (id) => {
+  const response = await fetch(`${API_URL}/products/${id}`);
+  return await response.json();
+};
