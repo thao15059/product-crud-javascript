@@ -8,7 +8,7 @@ const addProductToPage = (product, size, buttons, parent) => {
   const productDiv = document.createElement("div");
   parent.appendChild(productDiv);
   productDiv.outerHTML = `
-      <div class="card col-sm-${size}" >
+      <div class="card col-sm-6 col-md-${size}" >
         <img src="${product.image}" class="card-img-top" alt="${product.title}">
         <div class="card-body">
           <h5 class="card-title">${product.title}</h5>

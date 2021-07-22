@@ -81,4 +81,11 @@ router.put("/:id", validIdMid, validProductMid, async (req, res) => {
   res.json({ id: req.params.id });
 });
 
+// DELETE /api/products/:id
+router.delete("/:id", validIdMid, async (req, res) => {
+  await queries.delete(req.params.id);
+
+  res.json({ message: "Deleted" });
+});
+
 module.exports = router;
